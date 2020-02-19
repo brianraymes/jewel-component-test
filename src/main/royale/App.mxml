@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<j:Application
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:local="*"
+    initialize="onInitialize(event)">
+
+
+    <fx:Style source="../../main/resources/jewel-noflat-primary.css"/>
+    <fx:Style source="../../main/resources/jewel-noflat-secondary.css"/>
+    <fx:Style source="../../main/resources/jewel-noflat-emphasized.css"/>
+
+    <fx:Style source="../../main/resources/jewel-example-styles.css"/>
+   
+
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.collections.ArrayList;
+            import org.apache.royale.events.Event;
+            import org.apache.royale.reflection.registerClassAlias;
+
+            private function onInitialize(event:Event):void
+            {
+                // Treat ArrayCollection locally as royale ArrayList
+                registerClassAlias("flex.messaging.io.ArrayCollection", ArrayList);
+            }
+        ]]>
+    </fx:Script>
+    
+    <j:beads>
+        <js:ClassAliasBead/>
+    </j:beads>
+
+    <j:valuesImpl>
+        <js:SimpleCSSValuesImpl />
+    </j:valuesImpl>
+
+    <j:initialView>
+        <local:MainContent/>
+    </j:initialView>
+
+</j:Application>

@@ -1,0 +1,3 @@
+<royale-config>
+    <remove-circulars>true</remove-circulars>
+</royale-config>

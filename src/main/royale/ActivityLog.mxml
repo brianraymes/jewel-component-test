@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<j:ScrollableSectionContent
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:j="library://ns.apache.org/royale/jewel" 
+    xmlns:js="library://ns.apache.org/royale/basic" 
+    xmlns:html="library://ns.apache.org/royale/html">
+    
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.collections.ArrayList;
+            import org.apache.royale.events.Event;
+            import org.apache.royale.events.MouseEvent;
+
+            import vos.ActivityLogVO;
+
+            [Bindable]
+            private var activityLogs:ArrayList;
+
+            private function loadSmallDataClickHandler(event:MouseEvent):void
+            {
+                // Simulating the return result from a remote object call
+                
+                activityLogs = new ArrayList([
+                    new ActivityLogVO("When", "Recipient", 1)
+                ]);
+            }
+
+            private function loadLargerDataClickHandler(event:MouseEvent):void
+            {
+                // Simulating the return result from a remote object call
+                
+                var data:ArrayList = new ArrayList();
+
+                for (var i:Number = 0; i < 1000; i++) {
+                    data.addItem(new ActivityLogVO("When", "Recipient", i));
+                }
+
+                activityLogs = data;
+            }
+
+            private function clearDataClickHandler(event:MouseEvent):void
+            {
+                activityLogs = new ArrayList();
+            }
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ContainerDataBinding/>
+    </j:beads>
+
+    <j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+
+        <j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+
+            <j:Card>
+                
+                <j:HGroup gap="5">
+
+                    <j:Button
+                        text="Load Small Data"
+                        emphasis="primary"
+                        click="loadSmallDataClickHandler(event)"/>
+
+                    <j:Button
+                        text="Load Larger Data"
+                        emphasis="secondary"
+                        click="loadLargerDataClickHandler(event)"/>
+
+                    <j:Button
+                        text="Clear Data"
+                        emphasis="emphasized"
+                        click="clearDataClickHandler(event)"/>
+
+                </j:HGroup>
+
+                <html:H5 text="DataGrid width at 100%, no widths on columns"/>
+
+                <j:DataGrid
+                    width="100%"
+                    dataProvider="{activityLogs}"
+                    rowHeight="42"
+                    emphasis="emphasized">
+
+                    <j:columns>
+
+                        <j:DataGridColumn
+                            dataField="when" label="When"/>
+                        
+                        <j:DataGridColumn
+                            dataField="recipient" label="Recipient"/>
+                        
+                        <j:DataGridColumn
+                            dataField="duration" label="Duration"/>
+                        
+                    </j:columns>
+
+                </j:DataGrid>
+
+                <html:H5 text="DataGrid width at 600px, 100px width on first column only"/>
+
+                <j:DataGrid
+                    width="600"
+                    dataProvider="{activityLogs}"
+                    rowHeight="42"
+                    emphasis="emphasized">
+
+                    <j:columns>
+
+                        <j:DataGridColumn columnWidth="100"
+                            dataField="when" label="When"/>
+                        
+                        <j:DataGridColumn
+                            dataField="recipient" label="Recipient"/>
+                        
+                        <j:DataGridColumn
+                            dataField="duration" label="Duration"/>
+                        
+                    </j:columns>
+
+                </j:DataGrid>
+
+                <html:H5 text="DataGrid width at 600px, height at 600px (not working at all), 100px width on second column only"/>
+
+                <j:DataGrid
+                    width="600" height="600"
+                    dataProvider="{activityLogs}"
+                    rowHeight="42"
+                    emphasis="emphasized">
+
+                    <j:columns>
+
+                        <j:DataGridColumn
+                            dataField="when" label="When"/>
+                        
+                        <j:DataGridColumn columnWidth="100"
+                            dataField="recipient" label="Recipient"/>
+                        
+                        <j:DataGridColumn
+                            dataField="duration" label="Duration"/>
+                        
+                    </j:columns>
+
+                </j:DataGrid>
+
+            </j:Card>
+
+        </j:GridCell>
+
+    </j:Grid>
+
+</j:ScrollableSectionContent>

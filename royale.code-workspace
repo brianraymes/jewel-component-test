@@ -1,0 +1,10 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"as3mxml.sdk.framework": "c:\\dev\\royale-asjs"
+	}
+}

@@ -1,0 +1,21 @@
+{
+    "config": "royale",
+    "compilerOptions": {
+        "debug": true,
+        "source-path": [
+            "src/main/royale"
+        ],
+        "source-map": true,
+        "targets": ["JSRoyale"],
+        "html-template": "src/main/resources/index-template.html",
+        "theme": "${royalelib}/themes/JewelTheme/src/main/resources/defaults.css",
+        "js-library-path": [
+            "${royalelib}/js/libs/MXRoyaleJS.swc"
+        ]
+    },
+    "copySourcePathAssets": true,
+    "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions -js-dynamic-access-unknown-members=true -compiler.exclude-defaults-css-files=MXRoyaleJS.swc:defaults.css",
+    "files": [
+        "src/main/royale/App.mxml"
+    ]
+}
